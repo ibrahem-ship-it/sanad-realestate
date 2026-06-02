@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سند العقارية | استثمارك العقاري في أمان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* الألوان الأساسية */
+        :root {
+            --navy-blue: #0f172a;
+            --navy-light: #1e293b;
+            --gold: #d4af37; 
+            --gold-hover: #b5952f;
+            --white: #ffffff;
+            --gray-light: #f8fafc;
+            --text-dark: #334155;
+            --text-gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--gray-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* شريط التنقل (Navbar) */
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #dynamic-logo {
+            height: 50px;
+            width: auto;
+            display: none;
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            color: var(--gold);
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.7rem;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--navy-blue);
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        /* قسم الواجهة (Hero Section) */
+        .hero {
+            margin-top: 75px;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 5%;
+        }
+
+        .hero-text {
+            color: var(--white);
+            flex: 1;
+            padding-left: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge i {
+            margin-left: 8px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--white);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* نموذج الاستشارة (Lead Form) */
+        .hero-form {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 400px;
+            position: relative;
+            border-top: 5px solid var(--gold);
+        }
+
+        .hero-form h3 {
+            color: var(--navy-blue);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .hero-form p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--gold);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--navy-light);
+            color: var(--gold);
+        }
+
+        /* قسم المزايا (Features) */
+        .features {
+            padding: 5rem 5%;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--gray-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            background: var(--navy-blue);
+            width: 80px;
+            height: 80px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .feature-card h3 {
+            color: var(--navy-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        /* قسم العقارات (Properties Showcase) */
+        .properties-section {
+            padding: 5rem 5%;
+            background-color: #f1f5f9;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .property-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-image-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background-color: #cbd5e1;
+        }
+
+        .property-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .property-card:hover .property-image-container img {
+            transform: scale(1.1);
+        }
+
+        .prop-badge-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--gold);
+            color: var(--navy-blue);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            z-index: 2;
+        }
+
+        .prop-badge-cat {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(15, 23, 42, 0.8);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+        }
+
+        .prop-price-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 15px 10px;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 900;
+            z-index: 2;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .property-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .property-location {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .property-location i {
+            color: var(--gold);
+        }
+
+        .property-specs {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.8rem 0;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .property-specs div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .property-specs span {
+            color: var(--text-gray);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .property-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .btn-prop-contact {
+            width: 100%;
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-prop-contact i {
+            color: var(--gold);
+        }
+
+        .btn-prop-contact:hover {
+            background-color: var(--navy-light);
+        }
+
+        .no-properties {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-gray);
+            background: var(--white);
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            grid-column: 1 / -1;
+        }
+
+        /* قسم الفيديو (Video Section) */
+        .video-section {
+            padding: 5rem 5%;
+            background-color: var(--navy-blue);
+            text-align: center;
+            display: block;
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .video-pre-title {
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .video-section .section-title {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-section .section-subtitle {
+            color: #cbd5e1;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--gold);
+            position: relative;
+            padding-bottom: 56.25%; 
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* تصميم صندوق "انتظرونا قريباً" */
+        .coming-soon-video {
+            background-color: #162032;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .coming-soon-video i {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon-video h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+
+        .coming-soon-video p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* تذييل الصفحة (Footer) */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+            border-top: 5px solid var(--gold);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-title {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e2e8f0;
+            direction: ltr;
+            justify-content: flex-end;
+        }
+
+        .contact-list li.rtl-align {
+            direction: rtl;
+            justify-content: flex-start;
+        }
+
+        .contact-list i {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* لودر التحميل */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--navy-blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: var(--gold);
+            transition: opacity 0.5s;
+        }
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.1);
+            border-left-color: var(--gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* زر الواتساب العائم */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            .hero-text {
+                padding-left: 0;
+                margin-bottom: 3rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-form {
+                width: 100%;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <h3 style="font-family:'Tajawal'">جاري جلب البيانات بأمان...</h3>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img id="dynamic-logo" src="" alt="شعار الشركة" style="display: none;">
+            <div class="logo-text-wrapper" id="logo-text" style="display: flex;">
+                <span class="logo-title dynamic-company-name">سند العقارية</span>
+                <span class="logo-subtitle">SANAD REAL ESTATE</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#features">لماذا نحن</a></li>
+            <li><a href="#properties">العقارات</a></li>
+            <li><a href="#video-section">نصائح</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+        <a href="#lead-form" class="btn-gold">استشارة مجانية</a>
+    </header>
+
+    <section class="hero" id="hero-section" style="background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+        <div class="hero-text">
+            <div class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> إشراف قانوني وهندسي متكامل</div>
+            <h1>استثمارك العقاري في أمان.. <span>قانونياً وهندسياً</span></h1>
+            <p>بيع وشراء وتأجير الشقق والأراضي في 6 أكتوبر وزايد بخبرة 20 عاماً، وبإشراف محامٍ يضمن لك سلامة العقود ويبعدك عن التزوير ومشاكل الملكية.</p>
+        </div>
+
+        <div class="hero-form" id="lead-form">
+            <h3>سجل بياناتك الآن</h3>
+            <p>وسيقوم مستشارك العقاري والقانوني بالتواصل معك</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">الاسم الكريم</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الموبايل / الواتساب</label>
+                    <input type="tel" id="phone" dir="ltr" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">نوع الخدمة المطلوبة</label>
+                    <select id="service">
+                        <option value="شراء شقة">أرغب في شراء شقة</option>
+                        <option value="شراء أرض">أرغب في شراء قطعة أرض</option>
+                        <option value="تشطيب شقة">أطلب خدمة تشطيب هندسي</option>
+                        <option value="عرض عقاري للبيع">لدي عقار وأريد بيعه معكم</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title">لماذا تختار <span class="dynamic-company-name">سند العقارية</span> لإدارة عقارك؟</h2>
+        <p class="section-subtitle">بشهادة عملائنا على مدار 20 عاماً؛ نحن نوفر لك الدرع الواقي لاستثمارك.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-file-shield feature-icon"></i>
+                <h3>حماية قانونية (مكافحة التزوير)</h3>
+                <p>بصفتنا خبراء قانونيين، نقوم بفحص وتدقيق كافة سندات الملكية والعقود لضمان سلامة الشراء بنسبة 100%.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-helmet-safety feature-icon"></i>
+                <h3>أمان الأساسات والتشطيب</h3>
+                <p>نضمن لك أمان أساسات المباني والتشطيبات الداخلية الحساسة كالسباكة والكهرباء لضمان حمايتك من الغش التجاري.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-map-location-dot feature-icon"></i>
+                <h3>20 عاماً في أكتوبر وزايد</h3>
+                <p>من الحي الأول لبيت الوطن، نعرف تفاصيل السوق ونوفر لك أفضل جوار بأعلى عائد استثماري.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="properties-section" id="properties">
+        <div style="text-align: center;">
+            <h2 class="section-title">أحدث عروضنا العقارية</h2>
+            <p class="section-subtitle" style="margin-bottom: 1rem;">فرص استثمارية وسكنية بأوراق فحصت قانونياً</p>
+        </div>
+        
+        <div class="properties-grid" id="properties-grid">
+            <div class="no-properties">جاري جلب أحدث العقارات من قاعدة البيانات...</div>
+        </div>
+    </section>
+
+    <section class="video-section" id="video-section">
+        <p class="video-pre-title">فيديو تعريفي</p>
+        <h2 class="section-title">كلمة من خبراء شركة سند العقارية</h2>
+        <p class="section-subtitle">شاهد الفيديو لتتعرف على نصائحنا الذهبية لتجنب فخاخ النصب العقاري وكيف نضمن لك استثماراً آمناً.</p>
+        
+        <div class="video-container" id="video-container" style="display: none;">
+            <iframe id="dynamic-youtube" src="" allowfullscreen></iframe>
+        </div>
+
+        <div class="coming-soon-video" id="video-coming-soon">
+            <i class="fa-solid fa-video"></i>
+            <h3>انتظرونا قريباً</h3>
+            <p>نقوم حالياً بتجهيز أول فيديو إرشادي لمساعدتكم في اختيار عقاراتكم بأمان.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-title dynamic-company-name">سند العقارية</h3>
+                <p class="footer-text">نحن نتاج 20 عاماً من الخبرة العقارية والقانونية. نحن نمثل درع الحماية والمستشار الموثوق للعميل لضمان حصوله على شقة أو أرض بأعلى معايير الأمان.</p>
+            </div>
+            <div>
+                <h3 class="footer-title">تواصل معنا مباشرة</h3>
+                <ul class="contact-list">
+                    <li><span id="dynamic-phone">+20100000000</span> <i class="fa-solid fa-phone"></i></li>
+                    <li><span id="dynamic-email">info@sanad-realestate.com</span> <i class="fa-solid fa-envelope"></i></li>
+                    <li class="rtl-align"><i class="fa-solid fa-location-dot"></i> مدينة 6 أكتوبر - الجيزة - مصر</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">مناطق التغطية</h3>
+                <p class="footer-text">أكتوبر الجديدة، الأحياء 1-12، الحي المتميز، غرب سوميد، بيت الوطن، التوسعات الشمالية، الشيخ زايد.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 <span class="dynamic-company-name">سند العقارية</span>. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <a href="#" target="_blank" class="whatsapp-float" id="wa-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // رابط الشيت الأساسي الخاص بك
+        const sheetId = '1gCdxvUdzBEiwDHj6Xh34ldEDkxRUjCDAtSwYG--l4tU';
+        
+        // استخدام واجهة gviz لجلب أوراق محددة بالاسم!
+        const settingsUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Settings`;
+        const propertiesUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Properties`;
+
+        // متغير رقم الواتساب الافتراضي
+        let whatsappNumber = "20100000000";
+
+        // دالة تحويل رابط يوتيوب العادي إلى رابط تضمين
+        function getYouTubeEmbedUrl(url) {
+            if (!url) return '';
+            let videoId = '';
+            if (url.includes('v=')) {
+                videoId = url.split('v=')[1].split('&')[0];
+            } else if (url.includes('youtu.be/')) {
+                videoId = url.split('youtu.be/')[1].split('?')[0];
+            }
+            return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
+        }
+
+        // دالة مساعدة لفك تشفير ملفات CSV
+        function parseCSVRow(str) {
+            const arr = [];
+            let quote = false;
+            let col = '';
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                if (cc == '"' && quote && nc == '"') { col += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { arr.push(col.trim()); col = ''; continue; }
+                col += cc;
+            }
+            arr.push(col.trim());
+            return arr.map(item => {
+                if (item.startsWith('"') && item.endsWith('"')) {
+                    return item.substring(1, item.length - 1);
+                }
+                return item;
+            });
+        }
+
+        // جلب الإعدادات العامة (Settings)
+        async function fetchSettings() {
+            try {
+                const response = await fetch(settingsUrl);
+                if (!response.ok) throw new Error("Settings not found");
+                const csvText = await response.text();
+                const rows = csvText.split('\n');
+                const data = {};
+
+                for (let i = 1; i < rows.length; i++) {
+                    let rowData = parseCSVRow(rows[i]);
+                    if (rowData.length >= 2 && rowData[0]) {
+                        data[rowData[0]] = rowData[1];
+                    }
+                }
+
+                if (data['company_name']) {
+                    document.querySelectorAll('.dynamic-company-name').forEach(el => el.innerText = data['company_name']);
+                }
+                if (data['logo_url']) {
+                    const logoImg = document.getElementById('dynamic-logo');
+                    logoImg.src = data['logo_url'];
+                    logoImg.style.display = 'block';
+                    document.getElementById('logo-text').style.display = 'none';
+                }
+                if (data['main_image']) {
+                    document.getElementById('hero-section').style.backgroundImage = 
+                        `linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('${data['main_image']}')`;
+                }
+                
+                if (data['youtube_video']) {
+                    const embedUrl = getYouTubeEmbedUrl(data['youtube_video']);
+                    if (embedUrl) {
+                        document.getElementById('dynamic-youtube').src = embedUrl;
+                        document.getElementById('video-container').style.display = 'block';
+                        document.getElementById('video-coming-soon').style.display = 'none';
+                    } else {
+                        document.getElementById('video-container').style.display = 'none';
+                        document.getElementById('video-coming-soon').style.display = 'block';
+                    }
+                } else {
+                    document.getElementById('video-container').style.display = 'none';
+                    document.getElementById('video-coming-soon').style.display = 'block';
+                }
+
+                if (data['whatsapp_number']) {
+                    whatsappNumber = data['whatsapp_number'].replace(/\D/g,'');
+                    document.getElementById('dynamic-phone').innerText = '+' + whatsappNumber;
+                    document.getElementById('wa-float').href = `https://wa.me/${whatsappNumber}`;
+                }
+                if (data['contact_email']) {
+                    document.getElementById('dynamic-email').innerText = data['contact_email'];
+                }
+            } catch (error) {
+                console.warn("خطأ في جلب الإعدادات:", error);
+            }
+        }
+
+        // جلب العقارات (Properties)
+        async function fetchProperties() {
+            try {
+                const response = await fetch(propertiesUrl);
+                if (!response.ok) throw new Error("Properties tab not found");
+                const csvText = await response.text();
+                const rows = csvText.split('\n');
+                
+                const grid = document.getElementById('properties-grid');
+                grid.innerHTML = '';
+
+                let propertiesCount = 0;
+
+                for (let i = 1; i < rows.length; i++) {
+                    if (!rows[i].trim()) continue;
+                    
+                    const rowData = parseCSVRow(rows[i]);
+                    if (rowData.length >= 3 && rowData[0]) {
+                        propertiesCount++;
+                        
+                        const title = rowData[0] || 'بدون عنوان';
+                        const location = rowData[1] || 'غير محدد';
+                        const price = rowData[2] || 'تواصل لمعرفة السعر';
+                        const type = rowData[3] || 'للبيع';
+                        const category = rowData[4] || 'عقار';
+                        const area = rowData[5] || '-';
+                        const bedrooms = rowData[6] || '-';
+                        const bathrooms = rowData[7] || '-';
+                        const image = rowData[8] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'; 
+                        const description = rowData[9] || '';
+
+                        const card = document.createElement('div');
+                        card.className = 'property-card';
+                        
+                        const msg = `مرحباً سند العقارية، أريد الاستفسار عن: ${title} (${price}).`;
+
+                        card.innerHTML = `
+                            <div class="property-image-container">
+                                <img src="${image}" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                                <span class="prop-badge-type">${type}</span>
+                                <span class="prop-badge-cat">${category}</span>
+                                <div class="prop-price-overlay">${price}</div>
+                            </div>
+                            <div class="property-content">
+                                <h3 class="property-title">${title}</h3>
+                                <p class="property-location"><i class="fa-solid fa-map-location-dot"></i> ${location}</p>
+                                
+                                <div class="property-specs">
+                                    <div><span>المساحة</span> ${area}</div>
+                                    <div><span>غرف</span> ${bedrooms}</div>
+                                    <div><span>حمامات</span> ${bathrooms}</div>
+                                </div>
+                                
+                                <p class="property-desc">${description}</p>
+                                
+                                <a href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}" target="_blank" class="btn-prop-contact">
+                                    <i class="fa-brands fa-whatsapp"></i> استفسر وافحص الأوراق
+                                </a>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    }
+                }
+
+                if (propertiesCount === 0) {
+                    grid.innerHTML = '<div class="no-properties">لا توجد عقارات مضافة حالياً. سيتم تحديث الفرص قريباً!</div>';
+                }
+
+            } catch (error) {
+                console.warn("خطأ في جلب العقارات:", error);
+                document.getElementById('properties-grid').innerHTML = '<div class="no-properties">برجاء التأكد من أسماء الأعمدة في ورقة Properties.</div>';
+            }
+        }
+
+        // تشغيل كل دوال الجلب
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([fetchSettings(), fetchProperties()]);
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500);
+        });
+
+        // معالجة نموذج إرسال البيانات
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            
+            const companyName = document.querySelector('.dynamic-company-name').innerText || "سند العقارية";
+            const message = `مرحباً ${companyName}،%0Aأنا: ${name}%0Aرقمي: ${phone}%0Aالخدمة المطلوبة: ${service}%0Aأحتاج إلى استشارة قانونية وعقارية.`;
+            
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        });
+    </script>
+</body>
+</html>
