@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سند العقارية | استثمارك العقاري في أمان</title>
+    <!-- خطوط جوجل (Tajawal) -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -60,6 +62,7 @@
             height: 50px;
             width: auto;
             display: none;
+            border-radius: 4px;
         }
 
         .logo-text-wrapper {
@@ -126,6 +129,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 4rem 5%;
+            transition: background-image 0.5s ease-in-out;
         }
 
         .hero-text {
@@ -702,11 +706,13 @@
 </head>
 <body>
 
+    <!-- شاشة التحميل -->
     <div id="loader">
         <div class="spinner"></div>
         <h3 style="font-family:'Tajawal'">جاري جلب البيانات بأمان...</h3>
     </div>
 
+    <!-- Header -->
     <header>
         <div class="logo-container">
             <img id="dynamic-logo" src="" alt="شعار الشركة" style="display: none;">
@@ -725,6 +731,7 @@
         <a href="#lead-form" class="btn-gold">استشارة مجانية</a>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero" id="hero-section" style="background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
         <div class="hero-text">
             <div class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> إشراف قانوني وهندسي متكامل</div>
@@ -732,6 +739,7 @@
             <p>بيع وشراء وتأجير الشقق والأراضي في 6 أكتوبر وزايد بخبرة 20 عاماً، وبإشراف محامٍ يضمن لك سلامة العقود ويبعدك عن التزوير ومشاكل الملكية.</p>
         </div>
 
+        <!-- Lead Generation Form -->
         <div class="hero-form" id="lead-form">
             <h3>سجل بياناتك الآن</h3>
             <p>وسيقوم مستشارك العقاري والقانوني بالتواصل معك</p>
@@ -761,6 +769,7 @@
         </div>
     </section>
 
+    <!-- Features Section -->
     <section class="features" id="features">
         <h2 class="section-title">لماذا تختار <span class="dynamic-company-name">سند العقارية</span> لإدارة عقارك؟</h2>
         <p class="section-subtitle">بشهادة عملائنا على مدار 20 عاماً؛ نحن نوفر لك الدرع الواقي لاستثمارك.</p>
@@ -784,6 +793,7 @@
         </div>
     </section>
 
+    <!-- Properties Showcase Section -->
     <section class="properties-section" id="properties">
         <div style="text-align: center;">
             <h2 class="section-title">أحدث عروضنا العقارية</h2>
@@ -795,15 +805,18 @@
         </div>
     </section>
 
+    <!-- Dynamic Video Section -->
     <section class="video-section" id="video-section">
         <p class="video-pre-title">فيديو تعريفي</p>
         <h2 class="section-title">كلمة من خبراء شركة سند العقارية</h2>
         <p class="section-subtitle">شاهد الفيديو لتتعرف على نصائحنا الذهبية لتجنب فخاخ النصب العقاري وكيف نضمن لك استثماراً آمناً.</p>
         
+        <!-- حاوية الفيديو -->
         <div class="video-container" id="video-container" style="display: none;">
             <iframe id="dynamic-youtube" src="" allowfullscreen></iframe>
         </div>
 
+        <!-- حاوية قريباً -->
         <div class="coming-soon-video" id="video-coming-soon">
             <i class="fa-solid fa-video"></i>
             <h3>انتظرونا قريباً</h3>
@@ -811,6 +824,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer id="contact">
         <div class="footer-grid">
             <div>
@@ -821,7 +835,7 @@
                 <h3 class="footer-title">تواصل معنا مباشرة</h3>
                 <ul class="contact-list">
                     <li><span id="dynamic-phone">+20100000000</span> <i class="fa-solid fa-phone"></i></li>
-                    <li><span id="dynamic-email">info@sanad-realestate.com</span> <i class="fa-solid fa-envelope"></i></li>
+                    <li><a href="mailto:info@sanad-realestate.com" id="dynamic-email" style="color: inherit; text-decoration: none;">info@sanad-realestate.com</a> <i class="fa-solid fa-envelope"></i></li>
                     <li class="rtl-align"><i class="fa-solid fa-location-dot"></i> مدينة 6 أكتوبر - الجيزة - مصر</li>
                 </ul>
             </div>
@@ -835,24 +849,23 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
     <a href="#" target="_blank" class="whatsapp-float" id="wa-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <!-- الكود البرمجي لسحب البيانات من Google Sheets -->
     <script>
-        // رابط الشيت الأساسي الخاص بك
         const sheetId = '1gCdxvUdzBEiwDHj6Xh34ldEDkxRUjCDAtSwYG--l4tU';
-        
-        // استخدام واجهة gviz لجلب أوراق محددة بالاسم!
-        const settingsUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Settings`;
-        const propertiesUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Properties`;
+        // إضافة طابع زمني (Timestamp) لإجبار الموقع على جلب أحدث بيانات وتخطي الكاش
+        const timestamp = new Date().getTime(); 
+        const settingsUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Settings&t=${timestamp}`;
+        const propertiesUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Properties&t=${timestamp}`;
 
-        // متغير رقم الواتساب الافتراضي
-        let whatsappNumber = "20100000000";
+        let whatsappNumber = "20100000000"; // رقم افتراضي
 
-        // دالة تحويل رابط يوتيوب العادي إلى رابط تضمين
         function getYouTubeEmbedUrl(url) {
-            if (!url) return '';
+            if (!url || typeof url !== 'string') return '';
             let videoId = '';
             if (url.includes('v=')) {
                 videoId = url.split('v=')[1].split('&')[0];
@@ -862,7 +875,6 @@
             return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
         }
 
-        // دالة مساعدة لفك تشفير ملفات CSV
         function parseCSVRow(str) {
             const arr = [];
             let quote = false;
@@ -876,72 +888,84 @@
             }
             arr.push(col.trim());
             return arr.map(item => {
-                if (item.startsWith('"') && item.endsWith('"')) {
-                    return item.substring(1, item.length - 1);
+                let cleanItem = item.trim();
+                if (cleanItem.startsWith('"') && cleanItem.endsWith('"')) {
+                    return cleanItem.substring(1, cleanItem.length - 1).trim();
                 }
-                return item;
+                return cleanItem;
             });
         }
 
-        // جلب الإعدادات العامة (Settings)
         async function fetchSettings() {
             try {
                 const response = await fetch(settingsUrl);
                 if (!response.ok) throw new Error("Settings not found");
                 const csvText = await response.text();
-                const rows = csvText.split('\n');
+                // \r?\n تحل مشكلة الأسطر المخفية التي تنتجها جوجل شيت أحياناً
+                const rows = csvText.split(/\r?\n/);
                 const data = {};
 
                 for (let i = 1; i < rows.length; i++) {
+                    if (!rows[i].trim()) continue;
                     let rowData = parseCSVRow(rows[i]);
                     if (rowData.length >= 2 && rowData[0]) {
-                        data[rowData[0]] = rowData[1];
+                        // تحويل المفتاح لحروف صغيرة لضمان قراءته حتى لو كتبته بحرف كابيتال في الشيت
+                        let key = rowData[0].toLowerCase();
+                        let value = rowData[1];
+                        data[key] = value;
                     }
                 }
 
-                if (data['company_name']) {
+                // 1. تحديث اسم الشركة
+                if (data['company_name'] && data['company_name'].length > 1) {
                     document.querySelectorAll('.dynamic-company-name').forEach(el => el.innerText = data['company_name']);
                 }
-                if (data['logo_url']) {
+                
+                // 2. تحديث اللوجو بشكل آمن ومستقل
+                if (data['logo_url'] && data['logo_url'].length > 5) {
                     const logoImg = document.getElementById('dynamic-logo');
                     logoImg.src = data['logo_url'];
                     logoImg.style.display = 'block';
                     document.getElementById('logo-text').style.display = 'none';
                 }
-                if (data['main_image']) {
+                
+                // 3. تحديث الصورة الرئيسية بشكل آمن ومستقل
+                if (data['main_image'] && data['main_image'].length > 5) {
                     document.getElementById('hero-section').style.backgroundImage = 
                         `linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('${data['main_image']}')`;
                 }
                 
-                if (data['youtube_video']) {
+                // 4. تحديث فيديو اليوتيوب
+                if (data['youtube_video'] && data['youtube_video'].length > 5) {
                     const embedUrl = getYouTubeEmbedUrl(data['youtube_video']);
                     if (embedUrl) {
                         document.getElementById('dynamic-youtube').src = embedUrl;
                         document.getElementById('video-container').style.display = 'block';
                         document.getElementById('video-coming-soon').style.display = 'none';
-                    } else {
-                        document.getElementById('video-container').style.display = 'none';
-                        document.getElementById('video-coming-soon').style.display = 'block';
                     }
-                } else {
-                    document.getElementById('video-container').style.display = 'none';
-                    document.getElementById('video-coming-soon').style.display = 'block';
                 }
-
-                if (data['whatsapp_number']) {
+                
+                // 5. تحديث رقم الواتساب وتخزينه كمتغير عام
+                if (data['whatsapp_number'] && data['whatsapp_number'].length > 5) {
                     whatsappNumber = data['whatsapp_number'].replace(/\D/g,'');
                     document.getElementById('dynamic-phone').innerText = '+' + whatsappNumber;
                     document.getElementById('wa-float').href = `https://wa.me/${whatsappNumber}`;
                 }
-                if (data['contact_email']) {
-                    document.getElementById('dynamic-email').innerText = data['contact_email'];
+                
+                // 6. تحديث الإيميل
+                if (data['contact_email'] && data['contact_email'].length > 5) {
+                    const emailElement = document.getElementById('dynamic-email');
+                    emailElement.innerText = data['contact_email'];
+                    if(emailElement.tagName === 'A') {
+                        emailElement.href = `mailto:${data['contact_email']}`;
+                    }
                 }
+
             } catch (error) {
-                console.warn("خطأ في جلب الإعدادات:", error);
+                console.warn("خطأ في جلب الإعدادات (لكن الموقع سيستمر في العمل):", error);
             }
         }
 
-        // جلب العقارات (Properties)
         async function fetchProperties() {
             try {
                 const response = await fetch(propertiesUrl);
@@ -958,7 +982,7 @@
                     if (!rows[i].trim()) continue;
                     
                     const rowData = parseCSVRow(rows[i]);
-                    if (rowData.length >= 3 && rowData[0]) {
+                    if (rowData.length >= 3 && rowData[0] && rowData[0].trim() !== '') {
                         propertiesCount++;
                         
                         const title = rowData[0] || 'بدون عنوان';
@@ -975,6 +999,7 @@
                         const card = document.createElement('div');
                         card.className = 'property-card';
                         
+                        // هنا يتم استخدام رقم الواتساب الذي تم جلبه في الدالة السابقة
                         const msg = `مرحباً سند العقارية، أريد الاستفسار عن: ${title} (${price}).`;
 
                         card.innerHTML = `
@@ -1015,9 +1040,13 @@
             }
         }
 
-        // تشغيل كل دوال الجلب
+        // التعديل الجوهري: تشغيل الدوال بالترتيب وليس بالتوازي
         window.addEventListener('DOMContentLoaded', async () => {
-            await Promise.all([fetchSettings(), fetchProperties()]);
+            // 1. ننتظر حتى يجلب الإعدادات (ورقم الواتساب) أولاً
+            await fetchSettings();
+            // 2. ثم نرسم العقارات بناءً على الرقم الجديد
+            await fetchProperties();
+            
             document.getElementById('loader').style.opacity = '0';
             setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500);
         });
