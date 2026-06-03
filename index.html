@@ -34,6 +34,7 @@
             background-color: var(--gray-light);
             color: var(--text-dark);
             line-height: 1.6;
+            transition: direction 0.3s ease;
         }
 
         /* شريط التنقل (Navbar) */
@@ -88,6 +89,7 @@
             display: flex;
             gap: 1.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -96,6 +98,7 @@
             font-weight: 500;
             transition: color 0.3s;
             font-size: 0.95rem;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -120,6 +123,22 @@
             transform: translateY(-2px);
         }
 
+        /* زر اللغة */
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-lang:hover {
+            background: var(--gold);
+            color: var(--navy-blue);
+        }
+
         /* قسم الواجهة (Hero Section) */
         .hero {
             margin-top: 75px;
@@ -132,10 +151,12 @@
             transition: background-image 0.5s ease-in-out;
         }
 
+        html[dir="rtl"] .hero-text { padding-left: 2rem; }
+        html[dir="ltr"] .hero-text { padding-right: 2rem; }
+        
         .hero-text {
             color: var(--white);
             flex: 1;
-            padding-left: 2rem;
         }
 
         .hero-badge {
@@ -149,10 +170,7 @@
             font-weight: 700;
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
-        }
-
-        .hero-badge i {
-            margin-left: 8px;
+            gap: 8px;
         }
 
         .hero h1 {
@@ -312,11 +330,39 @@
             background-color: #f1f5f9;
         }
 
+        /* نظام الأزرار/التبويبات (Tabs) */
+        .prop-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            border: 2px solid var(--navy-blue);
+            color: var(--navy-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--navy-blue);
+            color: var(--white);
+            border-color: var(--navy-blue);
+        }
+
         .properties-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 1rem;
         }
 
         .property-card {
@@ -365,6 +411,9 @@
             font-weight: 800;
             z-index: 2;
         }
+        
+        html[dir="ltr"] .prop-badge-type { right: auto; left: 15px; }
+        html[dir="ltr"] .prop-badge-cat { left: auto; right: 15px; }
 
         .prop-badge-cat {
             position: absolute;
@@ -391,7 +440,10 @@
             font-size: 1.4rem;
             font-weight: 900;
             z-index: 2;
+            direction: ltr; /* لضمان ظهور الأرقام بشكل صحيح */
+            text-align: right;
         }
+        html[dir="ltr"] .prop-price-overlay { text-align: left; }
 
         .property-content {
             padding: 1.5rem;
@@ -609,17 +661,16 @@
             align-items: center;
             gap: 10px;
             color: #e2e8f0;
-            direction: ltr;
-            justify-content: flex-end;
         }
-
-        .contact-list li.rtl-align {
-            direction: rtl;
-            justify-content: flex-start;
-        }
+        
+        /* التوافق مع الاتجاهين في الفوتر */
+        html[dir="rtl"] .contact-list li { justify-content: flex-start; }
+        html[dir="ltr"] .contact-list li { justify-content: flex-start; direction: ltr;}
 
         .contact-list i {
             color: var(--gold);
+            width: 20px;
+            text-align: center;
         }
 
         .copyright {
@@ -674,6 +725,8 @@
             text-decoration: none;
             transition: transform 0.3s;
         }
+        
+        html[dir="ltr"] .whatsapp-float { right: auto; left: 30px; }
 
         .whatsapp-float:hover {
             transform: scale(1.1);
@@ -688,6 +741,7 @@
             }
             .hero-text {
                 padding-left: 0;
+                padding-right: 0;
                 margin-bottom: 3rem;
             }
             .hero h1 {
@@ -698,7 +752,8 @@
                 max-width: 450px;
                 margin: 0 auto;
             }
-            .nav-links {
+            /* إخفاء الروابط في الموبايل لتوفير مساحة، والاكتفاء بالزر */
+            .nav-links li.hide-mobile {
                 display: none;
             }
         }
@@ -709,7 +764,7 @@
     <!-- شاشة التحميل -->
     <div id="loader">
         <div class="spinner"></div>
-        <h3 style="font-family:'Tajawal'">جاري جلب البيانات بأمان...</h3>
+        <h3 style="font-family:'Tajawal'" class="lang-text" data-ar="جاري جلب البيانات بأمان..." data-en="Fetching data securely...">جاري جلب البيانات بأمان...</h3>
     </div>
 
     <!-- Header -->
@@ -722,48 +777,51 @@
             </div>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#features">لماذا نحن</a></li>
-            <li><a href="#properties">العقارات</a></li>
-            <li><a href="#video-section">نصائح</a></li>
-            <li><a href="#contact">تواصل معنا</a></li>
+            <!-- أزرار الخدمات لتعطي شعار الصفحات المتعددة -->
+            <li class="hide-mobile"><a href="#properties" onclick="filterProperties('للبيع')" class="lang-text" data-ar="للبيع" data-en="Buy">للبيع</a></li>
+            <li class="hide-mobile"><a href="#properties" onclick="filterProperties('للإيجار')" class="lang-text" data-ar="للإيجار" data-en="Rent">للإيجار</a></li>
+            <li class="hide-mobile"><a href="#features" class="lang-text" data-ar="الفحص القانوني" data-en="Legal Check">الفحص القانوني</a></li>
+            <li><button id="langToggle" class="btn-lang" onclick="toggleLanguage()">EN</button></li>
         </ul>
-        <a href="#lead-form" class="btn-gold">استشارة مجانية</a>
+        <a href="#lead-form" class="btn-gold lang-text" data-ar="استشارة مجانية" data-en="Free Consult">استشارة مجانية</a>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="hero-section" style="background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
         <div class="hero-text">
-            <div class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> إشراف قانوني وهندسي متكامل</div>
-            <h1>استثمارك العقاري في أمان.. <span>قانونياً وهندسياً</span></h1>
-            <p>بيع وشراء وتأجير الشقق والأراضي في 6 أكتوبر وزايد بخبرة 20 عاماً، وبإشراف محامٍ يضمن لك سلامة العقود ويبعدك عن التزوير ومشاكل الملكية.</p>
+            <div class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> <span class="lang-text" data-ar="إشراف قانوني وهندسي متكامل" data-en="Complete Legal & Engineering Supervision">إشراف قانوني وهندسي متكامل</span></div>
+            <h1 class="lang-text" data-ar="استثمارك العقاري في أمان.. <span>قانونياً وهندسياً</span>" data-en="Your Real Estate Investment is Safe.. <span>Legally & Structurally</span>">استثمارك العقاري في أمان.. <span>قانونياً وهندسياً</span></h1>
+            <p class="lang-text" data-ar="بيع وشراء وتأجير الشقق للأسر والطلاب بخبرة 20 عاماً، وبإشراف محامٍ يضمن لك سلامة العقود ويبعدك عن التزوير ومشاكل الملكية." data-en="Buying, selling, and renting apartments for families and students with 20 years of experience, supervised by a lawyer to ensure contract validity.">بيع وشراء وتأجير الشقق للأسر والطلاب بخبرة 20 عاماً، وبإشراف محامٍ يضمن لك سلامة العقود ويبعدك عن التزوير ومشاكل الملكية.</p>
         </div>
 
         <!-- Lead Generation Form -->
         <div class="hero-form" id="lead-form">
-            <h3>سجل بياناتك الآن</h3>
-            <p>وسيقوم مستشارك العقاري والقانوني بالتواصل معك</p>
+            <h3 class="lang-text" data-ar="سجل بياناتك الآن" data-en="Register Your Details">سجل بياناتك الآن</h3>
+            <p class="lang-text" data-ar="وسيقوم مستشارك العقاري والقانوني بالتواصل معك" data-en="Our Real Estate & Legal Advisor will contact you">وسيقوم مستشارك العقاري والقانوني بالتواصل معك</p>
             
             <form id="contactForm">
                 <div class="form-group">
-                    <label for="name">الاسم الكريم</label>
-                    <input type="text" id="name" placeholder="أدخل اسمك" required>
+                    <label for="name" class="lang-text" data-ar="الاسم الكريم" data-en="Full Name">الاسم الكريم</label>
+                    <input type="text" id="name" class="lang-input" data-ar="أدخل اسمك" data-en="Enter your name" placeholder="أدخل اسمك" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">رقم الموبايل / الواتساب</label>
+                    <label for="phone" class="lang-text" data-ar="رقم الموبايل / الواتساب" data-en="Phone / WhatsApp Number">رقم الموبايل / الواتساب</label>
                     <input type="tel" id="phone" dir="ltr" placeholder="01xxxxxxxxx" required>
                 </div>
                 <div class="form-group">
-                    <label for="service">نوع الخدمة المطلوبة</label>
+                    <label for="service" class="lang-text" data-ar="نوع الخدمة المطلوبة" data-en="Required Service">نوع الخدمة المطلوبة</label>
                     <select id="service">
-                        <option value="شراء شقة">أرغب في شراء شقة</option>
-                        <option value="شراء أرض">أرغب في شراء قطعة أرض</option>
-                        <option value="تشطيب شقة">أطلب خدمة تشطيب هندسي</option>
-                        <option value="عرض عقاري للبيع">لدي عقار وأريد بيعه معكم</option>
+                        <!-- تم إضافة الإيجار والفحص القانوني هنا بشكل صريح -->
+                        <option value="شراء عقار" class="lang-text" data-ar="أرغب في شراء عقار" data-en="I want to buy a property">أرغب في شراء عقار</option>
+                        <option value="استئجار شقة (أسر)" class="lang-text" data-ar="أرغب في استئجار شقة (للأسر)" data-en="I want to rent an apartment (Family)">أرغب في استئجار شقة (للأسر)</option>
+                        <option value="استئجار شقة (طلاب)" class="lang-text" data-ar="أرغب في استئجار شقة (للطلاب)" data-en="I want to rent an apartment (Students)">أرغب في استئجار شقة (للطلاب)</option>
+                        <option value="شراء أرض" class="lang-text" data-ar="أرغب في شراء قطعة أرض" data-en="I want to buy land">أرغب في شراء قطعة أرض</option>
+                        <option value="الفحص القانوني العقاري" class="lang-text" data-ar="أطلب خدمة الفحص القانوني للعقار" data-en="I need Legal Property Inspection">أطلب خدمة الفحص القانوني للعقار</option>
+                        <option value="عرض عقاري للبيع/الإيجار" class="lang-text" data-ar="لدي عقار وأريد بيعه أو تأجيره معكم" data-en="I have a property to sell/rent">لدي عقار وأريد بيعه أو تأجيره معكم</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-submit">
-                    <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    <i class="fa-brands fa-whatsapp"></i> <span class="lang-text" data-ar="تواصل عبر واتساب" data-en="Contact via WhatsApp">تواصل عبر واتساب</span>
                 </button>
             </form>
         </div>
@@ -771,24 +829,24 @@
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2 class="section-title">لماذا تختار <span class="dynamic-company-name">سند العقارية</span> لإدارة عقارك؟</h2>
-        <p class="section-subtitle">بشهادة عملائنا على مدار 20 عاماً؛ نحن نوفر لك الدرع الواقي لاستثمارك.</p>
+        <h2 class="section-title lang-text" data-ar="لماذا تختار سند العقارية؟" data-en="Why choose Sanad Real Estate?">لماذا تختار سند العقارية؟</h2>
+        <p class="section-subtitle lang-text" data-ar="بشهادة عملائنا على مدار 20 عاماً؛ نحن نوفر لك الدرع الواقي لاستثمارك." data-en="Trusted by clients for 20 years, we provide the ultimate shield for your investment.">بشهادة عملائنا على مدار 20 عاماً؛ نحن نوفر لك الدرع الواقي لاستثمارك.</p>
         
         <div class="features-grid">
             <div class="feature-card">
                 <i class="fa-solid fa-file-shield feature-icon"></i>
-                <h3>حماية قانونية (مكافحة التزوير)</h3>
-                <p>بصفتنا خبراء قانونيين، نقوم بفحص وتدقيق كافة سندات الملكية والعقود لضمان سلامة الشراء بنسبة 100%.</p>
+                <h3 class="lang-text" data-ar="الفحص القانوني العقاري" data-en="Legal Real Estate Inspection">الفحص القانوني العقاري</h3>
+                <p class="lang-text" data-ar="بصفتنا خبراء قانونيين، نقوم بفحص وتدقيق كافة سندات الملكية والعقود لضمان سلامة الشراء والتأجير بنسبة 100%." data-en="As legal experts, we audit all property deeds and contracts to ensure 100% safety in buying and renting.">بصفتنا خبراء قانونيين، نقوم بفحص وتدقيق كافة سندات الملكية والعقود لضمان سلامة الشراء والتأجير بنسبة 100%.</p>
             </div>
             <div class="feature-card">
                 <i class="fa-solid fa-helmet-safety feature-icon"></i>
-                <h3>أمان الأساسات والتشطيب</h3>
-                <p>نضمن لك أمان أساسات المباني والتشطيبات الداخلية الحساسة كالسباكة والكهرباء لضمان حمايتك من الغش التجاري.</p>
+                <h3 class="lang-text" data-ar="أمان الأساسات والتشطيب" data-en="Structural & Finishing Safety">أمان الأساسات والتشطيب</h3>
+                <p class="lang-text" data-ar="نضمن لك أمان أساسات المباني والتشطيبات الداخلية الحساسة كالسباكة والكهرباء لضمان حمايتك من الغش التجاري." data-en="We guarantee the safety of building foundations and sensitive internal finishings like plumbing and electricity.">نضمن لك أمان أساسات المباني والتشطيبات الداخلية الحساسة كالسباكة والكهرباء لضمان حمايتك من الغش التجاري.</p>
             </div>
             <div class="feature-card">
-                <i class="fa-solid fa-map-location-dot feature-icon"></i>
-                <h3>20 عاماً في أكتوبر وزايد</h3>
-                <p>من الحي الأول لبيت الوطن، نعرف تفاصيل السوق ونوفر لك أفضل جوار بأعلى عائد استثماري.</p>
+                <i class="fa-solid fa-house-user feature-icon"></i>
+                <h3 class="lang-text" data-ar="تأجير آمن ومريح" data-en="Safe & Comfortable Renting">تأجير آمن ومريح</h3>
+                <p class="lang-text" data-ar="نوفر وحدات سكنية ممتازة للأسر والطلاب، مع ضمان توثيق عقود الإيجار قانونياً لحفظ حقوق المالك والمستأجر." data-en="We provide excellent residential units for families and students, legally documenting contracts to protect both parties.">نوفر وحدات سكنية ممتازة للأسر والطلاب، مع ضمان توثيق عقود الإيجار قانونياً لحفظ حقوق المالك والمستأجر.</p>
             </div>
         </div>
     </section>
@@ -796,20 +854,27 @@
     <!-- Properties Showcase Section -->
     <section class="properties-section" id="properties">
         <div style="text-align: center;">
-            <h2 class="section-title">أحدث عروضنا العقارية</h2>
-            <p class="section-subtitle" style="margin-bottom: 1rem;">فرص استثمارية وسكنية بأوراق فحصت قانونياً</p>
+            <h2 class="section-title lang-text" data-ar="عروضنا العقارية" data-en="Our Properties">عروضنا العقارية</h2>
+            <p class="section-subtitle lang-text" style="margin-bottom: 1.5rem;" data-ar="تصفح أحدث عروض البيع والإيجار الموثقة قانونياً" data-en="Browse our latest legally verified properties for sale and rent">تصفح أحدث عروض البيع والإيجار الموثقة قانونياً</p>
+            
+            <!-- أزرار التبويب (Tabs) لفصل البيع عن الإيجار -->
+            <div class="prop-tabs">
+                <button class="tab-btn active lang-text" data-ar="الكل" data-en="All" onclick="filterProperties('all')">الكل</button>
+                <button class="tab-btn lang-text" data-ar="للبيع" data-en="For Sale" onclick="filterProperties('للبيع')">للبيع</button>
+                <button class="tab-btn lang-text" data-ar="للإيجار" data-en="For Rent" onclick="filterProperties('للإيجار')">للإيجار</button>
+            </div>
         </div>
         
         <div class="properties-grid" id="properties-grid">
-            <div class="no-properties">جاري جلب أحدث العقارات من قاعدة البيانات...</div>
+            <div class="no-properties lang-text" data-ar="جاري جلب أحدث العقارات..." data-en="Fetching latest properties...">جاري جلب أحدث العقارات...</div>
         </div>
     </section>
 
     <!-- Dynamic Video Section -->
     <section class="video-section" id="video-section">
-        <p class="video-pre-title">فيديو تعريفي</p>
-        <h2 class="section-title">كلمة من خبراء شركة سند العقارية</h2>
-        <p class="section-subtitle">شاهد الفيديو لتتعرف على نصائحنا الذهبية لتجنب فخاخ النصب العقاري وكيف نضمن لك استثماراً آمناً.</p>
+        <p class="video-pre-title lang-text" data-ar="فيديو تعريفي" data-en="Introductory Video">فيديو تعريفي</p>
+        <h2 class="section-title lang-text" data-ar="كلمة من خبراء الشركة" data-en="Message from our experts">كلمة من خبراء الشركة</h2>
+        <p class="section-subtitle lang-text" data-ar="شاهد الفيديو لتتعرف على نصائحنا لتجنب فخاخ النصب العقاري." data-en="Watch the video to learn our tips on avoiding real estate scams.">شاهد الفيديو لتتعرف على نصائحنا لتجنب فخاخ النصب العقاري.</p>
         
         <!-- حاوية الفيديو -->
         <div class="video-container" id="video-container" style="display: none;">
@@ -819,8 +884,8 @@
         <!-- حاوية قريباً -->
         <div class="coming-soon-video" id="video-coming-soon">
             <i class="fa-solid fa-video"></i>
-            <h3>انتظرونا قريباً</h3>
-            <p>نقوم حالياً بتجهيز أول فيديو إرشادي لمساعدتكم في اختيار عقاراتكم بأمان.</p>
+            <h3 class="lang-text" data-ar="انتظرونا قريباً" data-en="Coming Soon">انتظرونا قريباً</h3>
+            <p class="lang-text" data-ar="نقوم بتجهيز أول فيديو إرشادي لمساعدتكم." data-en="We are preparing our first guide video to help you.">نقوم بتجهيز أول فيديو إرشادي لمساعدتكم.</p>
         </div>
     </section>
 
@@ -829,23 +894,23 @@
         <div class="footer-grid">
             <div>
                 <h3 class="footer-title dynamic-company-name">سند العقارية</h3>
-                <p class="footer-text">نحن نتاج 20 عاماً من الخبرة العقارية والقانونية. نحن نمثل درع الحماية والمستشار الموثوق للعميل لضمان حصوله على شقة أو أرض بأعلى معايير الأمان.</p>
+                <p class="footer-text lang-text" data-ar="نحن نتاج 20 عاماً من الخبرة العقارية والقانونية. نحن نمثل درع الحماية والمستشار الموثوق للعميل لضمان حصوله على عقار آمن." data-en="With 20 years of legal & real estate experience, we are your trusted advisor and shield to ensure a safe property transaction.">نحن نتاج 20 عاماً من الخبرة العقارية والقانونية. نحن نمثل درع الحماية والمستشار الموثوق للعميل لضمان حصوله على عقار آمن.</p>
             </div>
             <div>
-                <h3 class="footer-title">تواصل معنا مباشرة</h3>
+                <h3 class="footer-title lang-text" data-ar="تواصل معنا مباشرة" data-en="Contact Us Directly">تواصل معنا مباشرة</h3>
                 <ul class="contact-list">
-                    <li><span id="dynamic-phone">+20100000000</span> <i class="fa-solid fa-phone"></i></li>
-                    <li><a href="mailto:info@sanad-realestate.com" id="dynamic-email" style="color: inherit; text-decoration: none;">info@sanad-realestate.com</a> <i class="fa-solid fa-envelope"></i></li>
-                    <li class="rtl-align"><i class="fa-solid fa-location-dot"></i> مدينة 6 أكتوبر - الجيزة - مصر</li>
+                    <li><i class="fa-solid fa-phone"></i> <span id="dynamic-phone" dir="ltr">+20100000000</span></li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@sanad-realestate.com" id="dynamic-email" style="color: inherit; text-decoration: none;">info@sanad-realestate.com</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> <span class="lang-text" data-ar="مدينة 6 أكتوبر - الجيزة - مصر" data-en="6th of October City - Giza - Egypt">مدينة 6 أكتوبر - الجيزة - مصر</span></li>
                 </ul>
             </div>
             <div>
-                <h3 class="footer-title">مناطق التغطية</h3>
-                <p class="footer-text">أكتوبر الجديدة، الأحياء 1-12، الحي المتميز، غرب سوميد، بيت الوطن، التوسعات الشمالية، الشيخ زايد.</p>
+                <h3 class="footer-title lang-text" data-ar="مناطق التغطية" data-en="Coverage Areas">مناطق التغطية</h3>
+                <p class="footer-text lang-text" data-ar="أكتوبر الجديدة، الأحياء 1-12، الحي المتميز، غرب سوميد، بيت الوطن، التوسعات الشمالية، الشيخ زايد." data-en="New October, Districts 1-12, Al Motamayez, West Somid, Beit Al Watan, Northern Expansions, Sheikh Zayed.">أكتوبر الجديدة، الأحياء 1-12، الحي المتميز، غرب سوميد، بيت الوطن، التوسعات الشمالية، الشيخ زايد.</p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2026 <span class="dynamic-company-name">سند العقارية</span>. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2026 <span class="dynamic-company-name">سند العقارية</span>. <span class="lang-text" data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span></p>
         </div>
     </footer>
 
@@ -854,15 +919,51 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- الكود البرمجي لسحب البيانات من Google Sheets -->
+    <!-- الكود البرمجي لسحب البيانات وتغيير اللغة -->
     <script>
+        // --- 1. إعدادات اللغة ---
+        let currentLang = 'ar';
+        const langToggleBtn = document.getElementById('langToggle');
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            
+            // تغيير اتجاه الموقع ولغة المتصفح
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            // تغيير نص زر اللغة
+            langToggleBtn.innerText = currentLang === 'ar' ? 'EN' : 'عربي';
+
+            // تحديث كل النصوص التي تحتوي على داتا اللغة
+            document.querySelectorAll('.lang-text').forEach(el => {
+                // الحفاظ على الأكواد الداخلية (مثل الأيقونات والألوان) إن وجدت
+                if(el.innerHTML.includes('<span') || el.innerHTML.includes('<i')) {
+                    // إذا كان العنصر يحتوي على HTML داخلي، نقوم بتحديث النص فقط برمجياً (تجنب مسح الـ HTML)
+                    // في حالتنا معظم العناصر نصوص مباشرة، ولكن لتفادي الأخطاء وضعنا الأيقونات خارج الـ spans
+                    el.innerHTML = el.getAttribute(`data-${currentLang}`);
+                } else {
+                    el.innerHTML = el.getAttribute(`data-${currentLang}`);
+                }
+            });
+
+            // تحديث الـ Placeholders
+            document.querySelectorAll('.lang-input').forEach(el => {
+                el.placeholder = el.getAttribute(`data-${currentLang}`);
+            });
+            
+            // إعادة رسم العقارات لتحديث نصوص أزرار "استفسر" حسب اللغة
+            renderProperties();
+        }
+
+        // --- 2. إعدادات جلب البيانات (الفلاتر والشيت) ---
         const sheetId = '1gCdxvUdzBEiwDHj6Xh34ldEDkxRUjCDAtSwYG--l4tU';
-        // إضافة طابع زمني (Timestamp) لإجبار الموقع على جلب أحدث بيانات وتخطي الكاش
         const timestamp = new Date().getTime(); 
         const settingsUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Settings&t=${timestamp}`;
         const propertiesUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Properties&t=${timestamp}`;
 
-        let whatsappNumber = "20100000000"; // رقم افتراضي
+        let whatsappNumber = "20100000000"; 
+        let allPropertiesData = []; // مصفوفة لتخزين العقارات لعمل الفلتر عليها
 
         function getYouTubeEmbedUrl(url) {
             if (!url || typeof url !== 'string') return '';
@@ -901,7 +1002,6 @@
                 const response = await fetch(settingsUrl);
                 if (!response.ok) throw new Error("Settings not found");
                 const csvText = await response.text();
-                // \r?\n تحل مشكلة الأسطر المخفية التي تنتجها جوجل شيت أحياناً
                 const rows = csvText.split(/\r?\n/);
                 const data = {};
 
@@ -909,19 +1009,16 @@
                     if (!rows[i].trim()) continue;
                     let rowData = parseCSVRow(rows[i]);
                     if (rowData.length >= 2 && rowData[0]) {
-                        // تحويل المفتاح لحروف صغيرة لضمان قراءته حتى لو كتبته بحرف كابيتال في الشيت
                         let key = rowData[0].toLowerCase();
                         let value = rowData[1];
                         data[key] = value;
                     }
                 }
 
-                // 1. تحديث اسم الشركة
                 if (data['company_name'] && data['company_name'].length > 1) {
                     document.querySelectorAll('.dynamic-company-name').forEach(el => el.innerText = data['company_name']);
                 }
                 
-                // 2. تحديث اللوجو بشكل آمن ومستقل
                 if (data['logo_url'] && data['logo_url'].length > 5) {
                     const logoImg = document.getElementById('dynamic-logo');
                     logoImg.src = data['logo_url'];
@@ -929,13 +1026,11 @@
                     document.getElementById('logo-text').style.display = 'none';
                 }
                 
-                // 3. تحديث الصورة الرئيسية بشكل آمن ومستقل
                 if (data['main_image'] && data['main_image'].length > 5) {
                     document.getElementById('hero-section').style.backgroundImage = 
                         `linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('${data['main_image']}')`;
                 }
                 
-                // 4. تحديث فيديو اليوتيوب
                 if (data['youtube_video'] && data['youtube_video'].length > 5) {
                     const embedUrl = getYouTubeEmbedUrl(data['youtube_video']);
                     if (embedUrl) {
@@ -945,14 +1040,12 @@
                     }
                 }
                 
-                // 5. تحديث رقم الواتساب وتخزينه كمتغير عام
                 if (data['whatsapp_number'] && data['whatsapp_number'].length > 5) {
                     whatsappNumber = data['whatsapp_number'].replace(/\D/g,'');
                     document.getElementById('dynamic-phone').innerText = '+' + whatsappNumber;
                     document.getElementById('wa-float').href = `https://wa.me/${whatsappNumber}`;
                 }
                 
-                // 6. تحديث الإيميل
                 if (data['contact_email'] && data['contact_email'].length > 5) {
                     const emailElement = document.getElementById('dynamic-email');
                     emailElement.innerText = data['contact_email'];
@@ -962,7 +1055,7 @@
                 }
 
             } catch (error) {
-                console.warn("خطأ في جلب الإعدادات (لكن الموقع سيستمر في العمل):", error);
+                console.warn("خطأ في جلب الإعدادات:", error);
             }
         }
 
@@ -973,66 +1066,29 @@
                 const csvText = await response.text();
                 const rows = csvText.split('\n');
                 
-                const grid = document.getElementById('properties-grid');
-                grid.innerHTML = '';
-
-                let propertiesCount = 0;
+                allPropertiesData = []; // إعادة تعيين البيانات
 
                 for (let i = 1; i < rows.length; i++) {
                     if (!rows[i].trim()) continue;
                     
                     const rowData = parseCSVRow(rows[i]);
                     if (rowData.length >= 3 && rowData[0] && rowData[0].trim() !== '') {
-                        propertiesCount++;
-                        
-                        const title = rowData[0] || 'بدون عنوان';
-                        const location = rowData[1] || 'غير محدد';
-                        const price = rowData[2] || 'تواصل لمعرفة السعر';
-                        const type = rowData[3] || 'للبيع';
-                        const category = rowData[4] || 'عقار';
-                        const area = rowData[5] || '-';
-                        const bedrooms = rowData[6] || '-';
-                        const bathrooms = rowData[7] || '-';
-                        const image = rowData[8] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'; 
-                        const description = rowData[9] || '';
-
-                        const card = document.createElement('div');
-                        card.className = 'property-card';
-                        
-                        // هنا يتم استخدام رقم الواتساب الذي تم جلبه في الدالة السابقة
-                        const msg = `مرحباً سند العقارية، أريد الاستفسار عن: ${title} (${price}).`;
-
-                        card.innerHTML = `
-                            <div class="property-image-container">
-                                <img src="${image}" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
-                                <span class="prop-badge-type">${type}</span>
-                                <span class="prop-badge-cat">${category}</span>
-                                <div class="prop-price-overlay">${price}</div>
-                            </div>
-                            <div class="property-content">
-                                <h3 class="property-title">${title}</h3>
-                                <p class="property-location"><i class="fa-solid fa-map-location-dot"></i> ${location}</p>
-                                
-                                <div class="property-specs">
-                                    <div><span>المساحة</span> ${area}</div>
-                                    <div><span>غرف</span> ${bedrooms}</div>
-                                    <div><span>حمامات</span> ${bathrooms}</div>
-                                </div>
-                                
-                                <p class="property-desc">${description}</p>
-                                
-                                <a href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}" target="_blank" class="btn-prop-contact">
-                                    <i class="fa-brands fa-whatsapp"></i> استفسر وافحص الأوراق
-                                </a>
-                            </div>
-                        `;
-                        grid.appendChild(card);
+                        allPropertiesData.push({
+                            title: rowData[0] || 'بدون عنوان',
+                            location: rowData[1] || 'غير محدد',
+                            price: rowData[2] || 'تواصل لمعرفة السعر',
+                            type: rowData[3] || 'للبيع', // للبيع أو للإيجار
+                            category: rowData[4] || 'عقار',
+                            area: rowData[5] || '-',
+                            bedrooms: rowData[6] || '-',
+                            bathrooms: rowData[7] || '-',
+                            image: rowData[8] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                            description: rowData[9] || ''
+                        });
                     }
                 }
 
-                if (propertiesCount === 0) {
-                    grid.innerHTML = '<div class="no-properties">لا توجد عقارات مضافة حالياً. سيتم تحديث الفرص قريباً!</div>';
-                }
+                renderProperties(); // رسم كل العقارات كبداية
 
             } catch (error) {
                 console.warn("خطأ في جلب العقارات:", error);
@@ -1040,23 +1096,92 @@
             }
         }
 
-        // التعديل الجوهري: تشغيل الدوال بالترتيب وليس بالتوازي
+        // دالة لرسم العقارات بناءً على الفلتر واللغة
+        function renderProperties(filterType = 'all') {
+            const grid = document.getElementById('properties-grid');
+            grid.innerHTML = '';
+
+            let filteredData = allPropertiesData;
+            if (filterType !== 'all') {
+                // الفلتر يبحث في النوع (للبيع / للإيجار)
+                filteredData = allPropertiesData.filter(prop => prop.type.includes(filterType));
+            }
+
+            if (filteredData.length === 0) {
+                const noPropMsg = currentLang === 'ar' ? 'لا توجد عقارات في هذا القسم حالياً.' : 'No properties available in this category right now.';
+                grid.innerHTML = `<div class="no-properties">${noPropMsg}</div>`;
+                return;
+            }
+
+            // نصوص الواجهة حسب اللغة (باقي النصوص تأتي من الشيت مباشرة)
+            const areaLabel = currentLang === 'ar' ? 'المساحة' : 'Area';
+            const bedLabel = currentLang === 'ar' ? 'غرف' : 'Beds';
+            const bathLabel = currentLang === 'ar' ? 'حمامات' : 'Baths';
+            const btnText = currentLang === 'ar' ? 'استفسر وافحص الأوراق' : 'Inquire & Check Legal Docs';
+
+            filteredData.forEach(prop => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                
+                const msg = `مرحباً سند العقارية، أريد الاستفسار عن: ${prop.title} (${prop.price}).`;
+
+                card.innerHTML = `
+                    <div class="property-image-container">
+                        <img src="${prop.image}" alt="${prop.title}" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'">
+                        <span class="prop-badge-type">${prop.type}</span>
+                        <span class="prop-badge-cat">${prop.category}</span>
+                        <div class="prop-price-overlay">${prop.price}</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">${prop.title}</h3>
+                        <p class="property-location"><i class="fa-solid fa-map-location-dot"></i> ${prop.location}</p>
+                        
+                        <div class="property-specs">
+                            <div><span>${areaLabel}</span> ${prop.area}</div>
+                            <div><span>${bedLabel}</span> ${prop.bedrooms}</div>
+                            <div><span>${bathLabel}</span> ${prop.bathrooms}</div>
+                        </div>
+                        
+                        <p class="property-desc">${prop.description}</p>
+                        
+                        <a href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}" target="_blank" class="btn-prop-contact">
+                            <i class="fa-brands fa-whatsapp"></i> ${btnText}
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // دالة الفلترة وتحديث الأزرار (يتم استدعاؤها من أزرار التبويب أو قائمة التنقل)
+        function filterProperties(type) {
+            // تحديث الأزرار النشطة (Tabs)
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                // مقارنة النص أو داتا أرابيك لمعرفة الزر الصحيح
+                if(btn.getAttribute('data-ar') === type || (type === 'all' && btn.getAttribute('data-ar') === 'الكل')) {
+                    btn.classList.add('active');
+                }
+            });
+            renderProperties(type);
+        }
+
         window.addEventListener('DOMContentLoaded', async () => {
-            // 1. ننتظر حتى يجلب الإعدادات (ورقم الواتساب) أولاً
             await fetchSettings();
-            // 2. ثم نرسم العقارات بناءً على الرقم الجديد
             await fetchProperties();
             
             document.getElementById('loader').style.opacity = '0';
             setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500);
         });
 
-        // معالجة نموذج إرسال البيانات
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
-            const service = document.getElementById('service').value;
+            
+            // قراءة الخدمة من القائمة بناءً على النص الظاهر للعميل
+            const serviceEl = document.getElementById('service');
+            const service = serviceEl.options[serviceEl.selectedIndex].text;
             
             const companyName = document.querySelector('.dynamic-company-name').innerText || "سند العقارية";
             const message = `مرحباً ${companyName}،%0Aأنا: ${name}%0Aرقمي: ${phone}%0Aالخدمة المطلوبة: ${service}%0Aأحتاج إلى استشارة قانونية وعقارية.`;
