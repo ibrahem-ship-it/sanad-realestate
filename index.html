@@ -898,7 +898,7 @@
                 <h3 class="footer-title lang-text" data-ar="تواصل معنا مباشرة" data-en="Contact Us Directly">تواصل معنا مباشرة</h3>
                 <ul class="contact-list">
                     <li><i class="fa-solid fa-phone"></i> <span id="dynamic-phone" dir="ltr">+20100000000</span></li>
-                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@sanad-realestate.com" id="dynamic-email" style="color: inherit; text-decoration: none;">info@sanad-realestate.com</a></li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:sanadrealestate7@gmail.com" id="dynamic-email" style="color: inherit; text-decoration: none;">sanadrealestate7@gmail.com</a></li>
                     <li><i class="fa-solid fa-location-dot"></i> <span class="lang-text" data-ar="مدينة 6 أكتوبر - الجيزة - مصر" data-en="6th of October City - Giza - Egypt">مدينة 6 أكتوبر - الجيزة - مصر</span></li>
                 </ul>
             </div>
@@ -1044,6 +1044,8 @@
                     document.getElementById('wa-float').href = `https://wa.me/${whatsappNumber}`;
                 }
                 
+                // تم إيقاف سحب الإيميل من الشيت بناءً على طلبك ليكون الإيميل الأساسي ثابتاً
+                /*
                 if (data['contact_email'] && data['contact_email'].length > 5) {
                     const emailElement = document.getElementById('dynamic-email');
                     emailElement.innerText = data['contact_email'];
@@ -1051,6 +1053,7 @@
                         emailElement.href = `mailto:${data['contact_email']}`;
                     }
                 }
+                */
 
             } catch (error) {
                 console.warn("خطأ في جلب الإعدادات:", error);
