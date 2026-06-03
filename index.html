@@ -776,14 +776,12 @@
                 <span class="logo-subtitle">SANAD REAL ESTATE</span>
             </div>
         </div>
-        <ul class="nav-links">
-            <!-- أزرار الخدمات لتعطي شعار الصفحات المتعددة -->
-            <li class="hide-mobile"><a href="#properties" onclick="filterProperties('للبيع')" class="lang-text" data-ar="للبيع" data-en="Buy">للبيع</a></li>
-            <li class="hide-mobile"><a href="#properties" onclick="filterProperties('للإيجار')" class="lang-text" data-ar="للإيجار" data-en="Rent">للإيجار</a></li>
-            <li class="hide-mobile"><a href="#features" class="lang-text" data-ar="الفحص القانوني" data-en="Legal Check">الفحص القانوني</a></li>
-            <li><button id="langToggle" class="btn-lang" onclick="toggleLanguage()">EN</button></li>
-        </ul>
-        <a href="#lead-form" class="btn-gold lang-text" data-ar="استشارة مجانية" data-en="Free Consult">استشارة مجانية</a>
+        
+        <!-- تم وضع زر اللغة وزر الاستشارة معاً على الجانب -->
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <button id="langToggle" class="btn-lang" onclick="toggleLanguage()">EN</button>
+            <a href="#lead-form" class="btn-gold lang-text" data-ar="استشارة مجانية" data-en="Free Consult">استشارة مجانية</a>
+        </div>
     </header>
 
     <!-- Hero Section -->
