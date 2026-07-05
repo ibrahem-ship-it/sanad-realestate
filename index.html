@@ -51,7 +51,7 @@
 
         /* قسم الواجهة (Hero Section) */
         .hero {
-            margin-top: 75px; background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            margin-top: 100px; background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
             min-height: 85vh; display: flex; align-items: center; justify-content: space-between;
             padding: 4rem 5%; transition: background-image 0.5s ease-in-out;
         }
@@ -171,7 +171,8 @@
         .file-upload-wrapper:hover .file-upload-btn { border-color: var(--gold); color: var(--navy-blue); }
 
         @media (max-width: 992px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 3rem; padding-bottom: 3rem; }
+            header { flex-direction: column; gap: 15px; padding-bottom: 1.5rem; }
+            .hero { flex-direction: column; text-align: center; padding-top: 3rem; padding-bottom: 3rem; margin-top: 150px; }
             .hero-text { padding: 0; margin-bottom: 3rem; }
             .admin-header { flex-direction: column; gap: 15px; text-align: center; }
             .header-actions { justify-content: center; width: 100%; }
@@ -275,7 +276,7 @@
     </div>
 
     <!-- صفحة رفع العقار من العملاء -->
-    <div id="submit-property-view" class="view-section" style="padding-top: 100px; padding-bottom: 50px; background: var(--navy-blue); min-height: 100vh;">
+    <div id="submit-property-view" class="view-section" style="padding-top: 120px; padding-bottom: 50px; background: var(--navy-blue); min-height: 100vh;">
         <div class="general-form-container">
             <h2 class="lang-text" data-ar="عرض عقارك للبيع أو الإيجار" data-en="List Your Property">عرض عقارك للبيع أو الإيجار</h2>
             <p class="lang-text" data-ar="ارفع بيانات عقارك وصوره. سيتم مراجعتها من فريقنا ولن تظهر بيانات اتصالك للجمهور." data-en="Submit your property details. They will be reviewed privately.">ارفع بيانات عقارك وصوره. سيتم مراجعتها من فريقنا ولن تظهر بيانات اتصالك للجمهور.</p>
@@ -312,7 +313,7 @@
     </div>
 
     <!-- صفحة تسجيل الدخول -->
-    <div id="login-view" class="view-section" style="padding-top: 100px; background: var(--gray-light); min-height: 100vh;">
+    <div id="login-view" class="view-section" style="padding-top: 120px; background: var(--gray-light); min-height: 100vh;">
         <div class="general-form-container">
             <h2><i class="fa-solid fa-lock text-gold"></i> الإدارة المحمية</h2>
             <p>تسجيل الدخول مخصص لمسؤولي سند العقارية فقط.</p>
